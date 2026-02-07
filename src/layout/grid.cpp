@@ -271,9 +271,6 @@ void HTLayoutGrid::build_overview_layout(HTViewStage stage) {
     const int ROWS = HTConfig::value<Hyprlang::INT>("grid:rows");
     const int COLS = HTConfig::value<Hyprlang::INT>("grid:cols");
 
-    const PHLMONITOR last_monitor = Desktop::focusState()->monitor();
-    Desktop::focusState()->rawMonitorFocus(monitor);
-
     overview_layout.clear();
 
     for (int y = 0; y < ROWS; y++) {
@@ -287,9 +284,6 @@ void HTLayoutGrid::build_overview_layout(HTViewStage stage) {
             overview_layout[ws_id] = HTWorkspace {x, y, ws_box};
         }
     }
-
-    if (last_monitor != nullptr)
-        Desktop::focusState()->rawMonitorFocus(last_monitor);
 }
 
 void HTLayoutGrid::render() {
